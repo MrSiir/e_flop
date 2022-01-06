@@ -19,7 +19,9 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   _onSearchChanged() {
-    if (_debounce.isActive) _debounce.cancel();
+    try {
+      if (_debounce.isActive) _debounce.cancel();
+    } catch (e) {}
     _debounce = Timer(const Duration(milliseconds: 1000), () {
       widget.onChanged(_searchQuery.text);
     });
@@ -50,9 +52,11 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   void dispose() {
+    try {
+      if (_debounce.isActive) _debounce.cancel();
+    } catch (e) {}
     _searchQuery.removeListener(_onSearchChanged);
     _searchQuery.dispose();
-    if (_debounce.isActive) _debounce.cancel();
     super.dispose();
   }
 }

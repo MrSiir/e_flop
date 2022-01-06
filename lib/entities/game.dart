@@ -33,7 +33,7 @@ class Game {
     required this.image,
   });
 
-  static Future<List<Game>> formFullJson(
+  static Future<List<Game>> fromFullJson(
       List<dynamic> jsonGames, bool colorful) async {
     final List<Game> games = [];
 

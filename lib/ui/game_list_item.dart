@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import 'package:e_flop/entities/game.dart';
 
 class GameListItem extends StatefulWidget {
@@ -61,7 +59,9 @@ class _GameListItemState extends State<GameListItem> {
                             child: Text(
                                 widget.game.priceLowest > 0
                                     ? widget.game.priceLowest.toString() + '€'
-                                    : 'GRATUITO',
+                                    : widget.game.priceLowest == 0
+                                        ? 'GRATUITO'
+                                        : 'DESCONOCIDO',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 16.0))),
                         if (widget.game.priceRegular > 0 &&

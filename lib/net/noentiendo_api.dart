@@ -15,7 +15,7 @@ class NoentiendoApi {
     final response = await http.get(Uri.parse(apiUrl));
     final parsed = jsonDecode(response.body)['response']['docs']
         .cast<Map<String, dynamic>>();
-    return await Game.formFullJson(parsed, true);
+    return await Game.fromFullJson(parsed, true);
   }
 }
 
@@ -44,7 +44,7 @@ class _ApiUrlBuilder {
 
   static String _buildSearchTermQuery(String searchTerm) =>
       searchTerm.isEmpty == false
-          ? 'q=${searchTerm.replaceAll(' ', '+')}'
+          ? 'q=*${searchTerm.replaceAll(' ', '+')}*'
           : 'q=*';
 
   static String _buildDiscountQuery(bool discount) =>
